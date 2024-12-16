@@ -16,7 +16,6 @@ public class GitHubLoginPage {
         setUserLogin(login);
         setUserPassword(password);
         pushSubmitButton();
-        isErrorMessage();
     }
 
     public void setUserLogin(String login){
