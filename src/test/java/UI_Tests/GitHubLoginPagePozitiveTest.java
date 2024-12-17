@@ -1,3 +1,5 @@
+package UI_Tests;
+
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
 import pageObject.GitHubLoginPage;
