@@ -1,6 +1,7 @@
-package UI_Tests;
+package ui_tests_v2;
 
 import com.codeborne.selenide.Selenide;
+
 import org.junit.jupiter.api.Test;
 import pageObject.GitHubHomePage;
 
@@ -10,17 +11,15 @@ public class GitHubHomePageTest extends BaseTest {
     public void contactSales() {
         GitHubHomePage gitHubHomePage = new GitHubHomePage();
         Selenide.open("/");
-        gitHubHomePage.Operation("Zhenya","Desyatkov");
+        gitHubHomePage.operation("Zhenya","Desyatkov");
     }
 
     @Test
     public void topikChek(){
         GitHubHomePage solutions = new GitHubHomePage();
         Selenide.open("/");
-        solutions.SolutionsCheck();
-
+        solutions.solutionsCheck();
     }
-
 
 
 }

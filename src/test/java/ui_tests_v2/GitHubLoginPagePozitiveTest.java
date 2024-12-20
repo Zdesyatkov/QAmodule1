@@ -1,4 +1,4 @@
-package UI_Tests;
+package ui_tests_v2;
 
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
@@ -11,5 +11,6 @@ public class GitHubLoginPagePozitiveTest extends BaseTest{
         GitHubLoginPage gitHubLoginPage = new GitHubLoginPage();
         Selenide.open("/session");
         gitHubLoginPage.authOperation("zdesyatkov1998@gmail.com", "Dfccznf89012813544");
+        gitHubLoginPage.logoutOperation();
     }
 }

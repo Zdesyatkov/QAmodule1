@@ -23,7 +23,7 @@ public class ReqresInApiTest {
 
 
     @Test
-    public void checkUserAvatar(){
+    public void avatarContainUrl(){
         List<GetUsersData> users = given()
                 .accept(ContentType.JSON)
                 .contentType(ContentType.JSON)
@@ -38,7 +38,7 @@ public class ReqresInApiTest {
     }
 
     @Test
-    public void checkColor(){
+    public void checkColorsYear(){
         List<GetColorData> pens = given()
                 .accept(ContentType.JSON)
                 .contentType(ContentType.JSON)

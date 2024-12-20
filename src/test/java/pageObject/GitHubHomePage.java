@@ -1,24 +1,31 @@
 package pageObject;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.text;
+import java.util.Arrays;
+import java.util.List;
+
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class GitHubHomePage {
-    private static final SelenideElement solutionsButton = $(By.xpath("/html/body/div[1]/div[3]/header/div/div[2]/div/nav/ul/li[2]/button"));
-    private static final SelenideElement ci_cdButton = $(By.xpath("/html/body/div[1]/div[3]/header/div/div[2]/div/nav/ul/li[2]/div/div[1]/div[2]/ul/li[3]/a"));
-    private static final SelenideElement contactSalesButton = $(By.xpath("//*[@id=\":R1b:\"]/section/div/div/div/div[2]/section/div/div[1]/div/div/a[2]/span[1]/span"));
+    private static final SelenideElement solutionsButton = $(By.xpath("//nav//li[2]//button"));
+    private static final SelenideElement ci_cdButton = $(By.xpath("//nav//ul/li[2]//div[2]//ul/li[3]/a"));
+    private static final SelenideElement contactSalesButton = $(By.xpath("//a[2]//span[1][text()='Contact sales']"));
     private static final SelenideElement userFirstName = $(By.name("first_name"));
     private static final SelenideElement userLastName = $(By.name("last_name"));
-    private static final SelenideElement resoursesButton = $(By.xpath("/html/body/div[1]/div[3]/header/div/div[2]/div/nav/ul/li[3]/button"));
-    private static final SelenideElement topicsTable = $(By.xpath("/html/body/div[1]/div[3]/header/div/div[2]/div/nav/ul/li[3]/div/div[1]/div/ul"));
+    private static final SelenideElement resoursesButton = $(By.xpath("//nav//li[3]//button"));
+    private static final SelenideElement topicsTable = $(By.xpath("//nav//li[3]//div/div[1]/div/ul"));
+    private static final List<String> topicList = Arrays.asList("AI\nDevOps\nSecurity\nSoftware Development\nView all");
+    private static final ElementsCollection actualTopics = $$(By.xpath("//nav//li[3]//div/div[1]/div/ul"));
 
 
-    public void Operation(String firstName, String lastName){
+
+    public void operation(String firstName, String lastName){
 
         pushSolutionsButton();
         pushCi_cdButton();
@@ -29,9 +36,10 @@ public class GitHubHomePage {
         Assertions.assertEquals("Desyatkov", lastName, "LastName Incorrect");
     }
 
-    public void SolutionsCheck(){
+    public void solutionsCheck(){
         pushResoursesButton();
         checkTopics();
+        Assertions.assertEquals(topicList, actualTopics.texts(), "Not Equals");
     }
 
 
@@ -61,11 +69,6 @@ public class GitHubHomePage {
     }
 
     public void checkTopics(){
-        topicsTable.shouldBe(visible).shouldHave(
-                text("AI"),
-                text("DevOps"),
-                text("Security"),
-                text("Software Development"),
-                text("View All"));
+        topicsTable.shouldBe(visible);
     }
 }

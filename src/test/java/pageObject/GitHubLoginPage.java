@@ -11,11 +11,19 @@ public class GitHubLoginPage {
     private static final SelenideElement userPasswordInput = $(By.id("password"));
     private static final SelenideElement submitButton = $(By.name("commit"));
     private static final SelenideElement invalidCredErrorMessage = $(By.xpath(".//div[@class=\"js-flash-alert\"]"));
+    private static final SelenideElement avatarButton = $(By.xpath("//img[contains(@class, 'avatar circle')]"));
+    private static final SelenideElement logoutButton = $("a[href='/logout']");
+    private static final SelenideElement signOut = $(By.xpath("//input[contains(@class, 'btn btn-sm m-0')]"));
 
     public void authOperation(String login, String password){
         setUserLogin(login);
         setUserPassword(password);
         pushSubmitButton();
+    }
+    public void logoutOperation(){
+        pushAvatarButton();
+        pushLogoutButton();
+        pushSignOut();
     }
 
     public void setUserLogin(String login){
@@ -33,4 +41,16 @@ public class GitHubLoginPage {
     public void isErrorMessage(){
         invalidCredErrorMessage.shouldBe(visible);
     }
+
+    public void pushAvatarButton(){
+        avatarButton.shouldBe(visible).click();
+    }
+
+    public void pushLogoutButton(){
+        logoutButton.shouldBe(visible).click();
+    }
+    public void pushSignOut(){
+        signOut.shouldBe(visible).click();
+    }
+
 }

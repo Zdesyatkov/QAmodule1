@@ -1,46 +1,41 @@
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
-import static Builders.PetStoreDogGenerator.setNewDog;
+
+import static apiConf.ApiSpecification.getRequestSpecification;
+import static apiConf.ApiSpecification.setSpecification;
+import static buildersNew.PetStoreDogGenerator.setNewDog;
 import static io.restassured.RestAssured.given;
 
 public class PetStoreApiTests {
+    private static final String baseURI = "https://petstore.swagger.io/v2";
+    private static final String basePathPet = "/pet";
+    private static final String basePathPetWithID = "/pet/123456";
+
+
     @Test
-    public void createNewPetIsCode200(){
-    given()
-            .baseUri("https://petstore.swagger.io/v2")
-            .basePath("/pet")
-            .contentType(ContentType.JSON)
-            .accept(ContentType.JSON)
-            .body(setNewDog())
-            .when().post()
-            .then().log().body().statusCode(200);
+    public void createNewPetIsCode200() {
+        setSpecification(getRequestSpecification(baseURI, basePathPet));
+        given()
+                .body(setNewDog())
+                .when().post()
+                .then().log().body().statusCode(200);
     }
 
     @Test
-    public void checkIdPetIs200(){
+    public void checkIdPetIs200() {
+        setSpecification(getRequestSpecification(baseURI, basePathPetWithID));
         given()
-                .baseUri("https://petstore.swagger.io/v2")
-                .basePath("/pet/123456")
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
                 .when().get()
                 .then().log().body().statusCode(200);
     }
 
     @Test
-    public void deletePetIs200(){
+    public void deletePetIs200() {
+        setSpecification(getRequestSpecification(baseURI, basePathPetWithID));
         given()
-                .baseUri("https://petstore.swagger.io/v2")
-                .basePath("/pet/123456")
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
                 .when().delete()
                 .then().log().body().statusCode(200);
     }
-
-
-
-
 
 }
