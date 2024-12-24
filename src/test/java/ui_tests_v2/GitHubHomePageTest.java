@@ -15,7 +15,7 @@ public class GitHubHomePageTest extends BaseTest {
     }
 
     @Test
-    public void topikChek(){
+    public void topicsChek(){
         GitHubHomePage solutions = new GitHubHomePage();
         Selenide.open("/");
         solutions.solutionsCheck();
