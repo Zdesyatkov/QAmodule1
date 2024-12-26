@@ -13,15 +13,15 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class GitHubHomePage {
-    private static final SelenideElement solutionsButton = $(By.xpath("//li[2]/button"));
-    private static final SelenideElement ci_cdButton = $(By.xpath("//nav//a[contains(text(), 'CI/CD')]"));
+    private static final SelenideElement solutionsButton = $(By.xpath(".//button[contains(text(), 'Solutions')]"));
+    private static final SelenideElement ci_cdButton = $(By.xpath("//a[contains(text(), 'CI/CD')]"));
     private static final SelenideElement contactSalesButton = $(By.xpath("//span[text()='Contact sales']"));
     private static final SelenideElement userFirstName = $(By.name("first_name"));
     private static final SelenideElement userLastName = $(By.name("last_name"));
-    private static final SelenideElement resoursesButton = $(By.xpath("//li[3]//button"));
-    private static final SelenideElement topicsTable = $(By.xpath("//li[3]//ul"));
+    private static final SelenideElement resoursesButton = $(By.xpath(".//button[contains(text(), 'Resources')]"));
+    private static final SelenideElement topicsTable = $(By.xpath(".//ul[@aria-labelledby='resources-topics-heading']"));
     private static final List<String> topicList = Arrays.asList("AI\nDevOps\nSecurity\nSoftware Development\nView all");
-    private static final ElementsCollection actualTopics = $$(By.xpath("//li[3]//div[1]/div/ul"));
+    private static final ElementsCollection actualTopics = $$(By.xpath(".//ul[@aria-labelledby='resources-topics-heading']"));
 
 
 
